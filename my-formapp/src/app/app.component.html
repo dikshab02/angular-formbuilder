@@ -1,0 +1,44 @@
+<app-basic-info (e)="onBasicInfoChange($event)"></app-basic-info>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Permanent Address</mat-card-title>
+  </mat-card-header>
+  <app-address (e)="onPermanentAddressChange($event)"></app-address>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Current Address</mat-card-title>
+  </mat-card-header>
+  <app-address (e)="onTemporaryAddressChange($event)"></app-address>
+  <mat-card-footer>
+    <mat-card-actions class="submit-button" align="end">
+      <button mat-button>SUBMIT</button>
+    </mat-card-actions>
+    <mat-card-actions class="cancel-button" align="end">
+      <button mat-button>Cancel</button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>
+<mat-card>
+  <mat-card-header> Error Messages </mat-card-header>
+  <mat-card-content>
+    {{ errMsgArr.length > 0 ? "Basic Info Error" : "" }}
+    <div *ngFor="let msg of errMsgArr">
+      {{ msg }}
+    </div>
+
+    <br>
+    {{ errMsgAddArr.length > 0 ? "Permanent Address Error" : "" }}
+    <div *ngFor="let msgP of errMsgAddArr">
+      {{ msgP }}
+    </div>
+
+    <br>
+    {{ errMsgTempAddArr.length > 0 ? "Temporary Address Error" : "" }}
+    <div *ngFor="let msgT of errMsgTempAddArr">
+      {{ msgT }}
+    </div>
+  </mat-card-content>
+</mat-card>
+<router-outlet></router-outlet>

@@ -1,0 +1,38 @@
+<!-- <p>basic-info works!</p> -->
+<!-- <p>Form Status: {{ basicForm.status }}</p> -->
+<form *ngIf="basicForm" [formGroup]="basicForm">
+  <mat-card class="border-1">
+    <mat-card-header>
+      <mat-card-title>Basic Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="example-container">
+        <div class="example-form-fields">
+          <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First Name" formControlName="firstName" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Second Name</mat-label>
+            <input matInput placeholder="Second Name" formControlName="secondName" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Birthday</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="birthday" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" formControlName="phone" />
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</form>
