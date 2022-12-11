@@ -1,7 +1,6 @@
-import { ConditionalExpr } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormService } from './form-service.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  constructor(private formService: FormService) {}
   title = 'my-formapp';
   errMsgArr: string[] = [];
   errMsgAddArr: string[] = [];
@@ -28,6 +28,10 @@ export class AppComponent {
     state: 'State',
     country: 'Country',
     pincode: 'Pin code'
+  }
+
+  onSubmit() {
+    this.formService.submit.next(undefined);
   }
 
   onBasicInfoChange(data: FormGroup) {
@@ -82,4 +86,5 @@ export class AppComponent {
     }
   })
   }
+
 }

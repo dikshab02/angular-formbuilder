@@ -13,7 +13,7 @@
   <app-address (e)="onTemporaryAddressChange($event)"></app-address>
   <mat-card-footer>
     <mat-card-actions class="submit-button" align="end">
-      <button mat-button>SUBMIT</button>
+      <button mat-button (click)="onSubmit()">SUBMIT</button>
     </mat-card-actions>
     <mat-card-actions class="cancel-button" align="end">
       <button mat-button>Cancel</button>
@@ -28,17 +28,18 @@
       {{ msg }}
     </div>
 
-    <br>
+    <br />
     {{ errMsgAddArr.length > 0 ? "Permanent Address Error" : "" }}
     <div *ngFor="let msgP of errMsgAddArr">
       {{ msgP }}
     </div>
 
-    <br>
+    <br />
     {{ errMsgTempAddArr.length > 0 ? "Temporary Address Error" : "" }}
     <div *ngFor="let msgT of errMsgTempAddArr">
       {{ msgT }}
     </div>
   </mat-card-content>
 </mat-card>
+
 <router-outlet></router-outlet>

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormService } from '../form-service.service';
 
 @Component({
   selector: 'app-basic-info',
@@ -8,6 +9,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class BasicInfoComponent implements OnInit {
   @Output() e = new EventEmitter<FormGroup>();
+  // @Input() getInfoFromParent: boolean = false;
 
   basicForm = this._formBuilder.group({
     firstName : ['', [Validators.required]],
@@ -17,21 +19,27 @@ export class BasicInfoComponent implements OnInit {
     phone : ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]]
   })
 
-  constructor(private _formBuilder : FormBuilder) { }
+  constructor(private _formBuilder : FormBuilder, private formService: FormService) { }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log("changes=->",changes)
+  //   if(changes['getInfoFromParent'].currentValue)
+  //   {
+  //     this.basicFormEmitter();
+  //   }
+  // }
 
   ngOnInit(): void {
-    this.basicForm.valueChanges.subscribe((temp)=> {
+    // this.basicForm.valueChanges.subscribe((temp)=> {
+    //   this.basicFormEmitter();
+    // })
+    this.formService.submit.subscribe((p)=>{
       this.basicFormEmitter();
     })
   }
 
+
   basicFormEmitter() {
     this.e.emit(this.basicForm)
   }
-
-  // getErrorMessage() {
-  //   return this.email.hasError('required') ? 'Mandatory Field' :
-  //   this.email.hasError('email') ? 'Not a valid email' : '';
-  // }
 
 }
